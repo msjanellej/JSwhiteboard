@@ -1,5 +1,5 @@
 "use strict";
-getPalindrome();
+getHappyNumbers();
 
 //Reverse String
 
@@ -86,8 +86,50 @@ function palindromeChecker(word, reverseWord){
     if (reverseWord === word ){
         isPalindrome = true;
     }
-    return isPalindrome;
+    return isPalindrome;   
+}
+function getHappyNumbers(){
+    let number =getNumber();
+    let result = determineHappyNumber(number);
+    displayResult(result);
+
+}
+function getNumber(){
+    let number = prompt("please enter a number");
+    return number;
+}
+function determineHappyNumber(input){
+    let numbersTried = [];
+    numbersTried.push(input);
+    let sum = 0;
+    let number =0;
+    let result;
+    let output = input;
+    while (true){
+        let digits = output.toString().split("")
+        sum = 0;
+        for (let i =0; i< digits.length; i++){
+            number = parseInt(digits[i])* parseInt(digits[i]);
+            sum += number;
+        }
+        if (sum ==1){
+            result = input + " is a happy number";
+            break;
+        }
+        else if (numbersTried.includes(sum)){
+            result = input +" not a happy number";
+            break;
+        }
+        else{
+            numbersTried.push(sum);
+            output = sum;
+            continue;
+        }
+    }
+    return result;
+
     
+
 }
 
 
